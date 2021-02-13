@@ -1,36 +1,92 @@
 import React, { useState, useEffect } from "react";
-import { Container, Col, ListGroup, Row, Image, Card, Form } from "react-bootstrap";
+import {
+  Container,
+  Col,
+  ListGroup,
+  Row,
+  Image,
+  Card,
+  Form,
+  Carousel,
+} from "react-bootstrap";
 import { Link } from "react-router-dom";
 import Rating from "./components/Rating";
 import axios from "axios";
 import StripeButton from "./components/StripeButton";
+import productData from "../data/productData";
+import { FaArrowAltCircleRight, FaArrowAltCircleLeft } from "react-icons/fa";
+import "./styles/ProductScreenStyles.css";
 
 const ProductScreen = ({ match }) => {
-  const [product, setProduct] = useState({});
-  const [quantity, setQuantity] = useState(1);
-  const [price, setPrice] = useState();
+  const [product, setProduct] = useState(
+    productData.find(({ _id }) => _id === match.params.id)
+  );
+  // const [quantityBlack, setQuantityBlack] = useState(1);
+  // const [quantityBlue, setQuantityBlue] = useState(0);
+  const [quantity, setQuantity] = useState({ total: 1, black: 1, blue: 0 });
+  const [price, setPrice] = useState(product.price);
+
+  const productIcons = {
+    nextIcon: <FaArrowAltCircleRight className="productScreen__FaArrows" />,
+    prevIcon: <FaArrowAltCircleLeft className="productScreen__FaArrows" />,
+  };
+
+  // console.log(productData.find(({ _id }) => _id === match.params.id));
+  // console.log(product.image.map((image) => image));
 
   function changeQuantity(e) {
     e.preventDefault();
-    setQuantity(e.target.value);
-    setPrice(e.target.value > 1 ? product.price * e.target.value ** 0.95 : product.price);
+    console.log(e);
+    if (e.className === "productScreen__blackInput") {
+      setQuantity(
+        ...{
+          total: e.target.value + quantity.blue,
+          black: e.target.value,
+        }
+      );
+    } else {
+      setQuantity(
+        ...{
+          total: e.target.value + quantity.black,
+          blue: e.target.value,
+        }
+      );
+    }
+    setPrice(
+      e.target.value > 1
+        ? product.price * e.target.value ** 0.95
+        : product.price
+    );
   }
 
-  useEffect(() => {
-    const fetchProduct = async () => {
-      const { data } = await axios.get(`/api/products/${match.params.id}`);
-      setProduct(data);
-      setPrice(data.price);
-    };
-    fetchProduct();
-  }, [match]);
+  // console.log(product.id === 2 && "sdfdsfdf");
+  console.log(product._id === "2" && "sdfsdf");
+
+  // useEffect(() => {
+  //   // setProduct(productData.find(({ _id }) => _id === match.params.id)).then(
+  //   //   setPrice(product.price)
+  //   // );
+  // }, []);
 
   return (
     <Container className="py-2">
       <Row>
         <Col md={7}>
-          <Image src={product.image} alt={product.name} fluid />
+          <Carousel
+            nextIcon={productIcons.nextIcon}
+            prevIcon={productIcons.prevIcon}
+          >
+            {console.log(product.image.map((image) => image))}
+            {product.image.map((image, key) => (
+              <Carousel.Item>
+                <img className="d-block w-100" src={image} alt="" />
+              </Carousel.Item>
+            ))}
+          </Carousel>
         </Col>
+        {/* <Col md={7}>
+          <Image src={product.image} alt={product.name} fluid />
+        </Col> */}
         <Col md={5} className="my-auto">
           <ListGroup variant="flush">
             <ListGroup.Item>
@@ -41,6 +97,19 @@ const ProductScreen = ({ match }) => {
             </ListGroup.Item>
             <ListGroup.Item>{product.description}</ListGroup.Item>
           </ListGroup>
+          <div className="productScreen__colorContainer">
+            {/* <div className="productScreen__black" /> */}
+            <div
+              className={`productScreen__black ${
+                product._id === "2" && "deactive"
+              }`}
+            />
+            <div
+              className={`productScreen__blue ${
+                product._id === "1" && "deactive"
+              }`}
+            />
+          </div>
           <Card>
             <ListGroup variant="flush">
               <ListGroup.Item>
@@ -53,13 +122,27 @@ const ProductScreen = ({ match }) => {
               </ListGroup.Item>
               <ListGroup.Item>
                 <Row>
-                  <Col>Quantity</Col>
+                  <Col>Quantity - Black</Col>
                   <Col>
                     <input
+                      className="productScreen__blackInput"
                       min="0"
-                      style={{ width: "60px", padding: "5px" }}
+                      style={{ height: "25px", width: "60px", padding: "5px" }}
                       type="number"
-                      value={quantity}
+                      value={quantity.black}
+                      onChange={changeQuantity}
+                    />
+                  </Col>
+                </Row>
+                <Row>
+                  <Col>Quantity - Blue</Col>
+                  <Col>
+                    <input
+                      className="productScreen__blueInput"
+                      min="0"
+                      style={{ height: "25px", width: "60px", padding: "5px" }}
+                      type="number"
+                      value={quantity.blue}
                       onChange={changeQuantity}
                     />
                   </Col>
@@ -106,7 +189,10 @@ const ProductScreen = ({ match }) => {
                 </Row>
               </ListGroup.Item> */}
               <ListGroup.Item>
-                <StripeButton quantity={quantity} price={price / quantity} />
+                <StripeButton
+                  quantity={quantity.total}
+                  price={price / quantity.total}
+                />
               </ListGroup.Item>
             </ListGroup>
           </Card>

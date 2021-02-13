@@ -17,7 +17,8 @@ const LandingScreen = () => {
             </h1>
             <p>
               Lorem ipsum dolor sit amet consectetur, adipisicing elit. Deleniti
-              voluptatem placeat natus distinctio quas iure tenetur, dolorum quibusda.
+              voluptatem placeat natus distinctio quas iure tenetur, dolorum
+              quibusda.
             </p>
             <Link to="/products">
               <button className="btn btn-cta">
@@ -43,20 +44,25 @@ const LandingScreen = () => {
             <i className="fas fa-couch fa-3x"></i>
             <h3>Comfortable</h3>
             <p>
-              Lorem ipsum dolor sit, amet consectetur adipisicing elit. Voluptate, iusto.
+              Lorem ipsum dolor sit, amet consectetur adipisicing elit.
+              Voluptate, iusto.
             </p>
           </div>
           <div className="f feature col-md-3">
             <i className="fas fa-wallet fa-3x"></i>
             <h3>Accesible</h3>
             <p>
-              Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ullam, architecto.
+              Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ullam,
+              architecto.
             </p>
           </div>
           <div className="f feature col-md-3">
             <i className="fas fa-bolt fa-3x"></i>
             <h3>Effective</h3>
-            <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ex, fugiat.</p>
+            <p>
+              Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ex,
+              fugiat.
+            </p>
           </div>
         </div>
       </section>
@@ -73,16 +79,16 @@ const LandingScreen = () => {
           <div className="col-md-6">
             <div className="card">
               <img
-                src="./images/products/black_no_bg.png"
+                src="./images/products/black-no-bg.png"
                 className="card-img-top"
                 alt="..."
               />
               <div className="card-body">
                 <h3 className="card-title">Standard Model</h3>
                 <p className="card-text">
-                  Lorem ipsum dolor sit, amet consectetur adipisicing elit. Minus
-                  cupiditate reprehenderit quisquam distinctio soluta maxime libero
-                  nostrum iusto accusantium! Eius.
+                  Lorem ipsum dolor sit, amet consectetur adipisicing elit.
+                  Minus cupiditate reprehenderit quisquam distinctio soluta
+                  maxime libero nostrum iusto accusantium! Eius.
                 </p>
               </div>
             </div>
@@ -90,16 +96,16 @@ const LandingScreen = () => {
           <div className="col-md-6">
             <div className="card">
               <img
-                src="./images/products/blue_no_bg.png"
+                src="./images/products/blue-no-bg.png"
                 className="card-img-top"
                 alt="..."
               />
               <div className="card-body">
                 <h3 className="card-title">Premium Model</h3>
                 <p className="card-text">
-                  Lorem ipsum dolor sit, amet consectetur adipisicing elit. Minus
-                  cupiditate reprehenderit quisquam distinctio soluta maxime libero
-                  nostrum iusto accusantium! Eius.
+                  Lorem ipsum dolor sit, amet consectetur adipisicing elit.
+                  Minus cupiditate reprehenderit quisquam distinctio soluta
+                  maxime libero nostrum iusto accusantium! Eius.
                 </p>
               </div>
             </div>
@@ -120,7 +126,8 @@ const LandingScreen = () => {
             <ListGroup.Item key={key}>
               <Row style={{ padding: "0 60px" }}>
                 <Col>
-                  {testimonial.name} <br /> <Rating rating={testimonial.rating} />
+                  {testimonial.name} <br />{" "}
+                  <Rating rating={testimonial.rating} />
                 </Col>
                 <Col>{testimonial.description}</Col>
               </Row>
@@ -137,10 +144,10 @@ const LandingScreen = () => {
                 <div className="text">
                   <h2>Jane Doe</h2>
                   <p>
-                    Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sapiente,
-                    ea. Nisi modi ducimus accusantium quae delectus quibusdam temporibus
-                    sunt sint. Lorem ipsum dolor sit amet consectetur, adipisicing elit.
-                    Accusamus, ipsa.
+                    Lorem, ipsum dolor sit amet consectetur adipisicing elit.
+                    Sapiente, ea. Nisi modi ducimus accusantium quae delectus
+                    quibusdam temporibus sunt sint. Lorem ipsum dolor sit amet
+                    consectetur, adipisicing elit. Accusamus, ipsa.
                   </p>
                 </div>
                 <i className="fas fa-quote-right fa-3x"></i>
@@ -154,10 +161,10 @@ const LandingScreen = () => {
                 <div className="text">
                   <h2>John Doe</h2>
                   <p>
-                    Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sapiente,
-                    ea. Nisi modi ducimus accusantium quae delectus quibusdam temporibus
-                    sunt sint. Lorem ipsum dolor sit amet consectetur, adipisicing elit.
-                    Accusamus, ipsa.
+                    Lorem, ipsum dolor sit amet consectetur adipisicing elit.
+                    Sapiente, ea. Nisi modi ducimus accusantium quae delectus
+                    quibusdam temporibus sunt sint. Lorem ipsum dolor sit amet
+                    consectetur, adipisicing elit. Accusamus, ipsa.
                   </p>
                 </div>
                 <i className="fas fa-quote-right fa-3x"></i>
@@ -171,10 +178,10 @@ const LandingScreen = () => {
                 <div className="text">
                   <h2>Amy Zhang</h2>
                   <p>
-                    Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sapiente,
-                    ea. Nisi modi ducimus accusantium quae delectus quibusdam temporibus
-                    sunt sint. Lorem ipsum dolor sit amet consectetur, adipisicing elit.
-                    Accusamus, ipsa.
+                    Lorem, ipsum dolor sit amet consectetur adipisicing elit.
+                    Sapiente, ea. Nisi modi ducimus accusantium quae delectus
+                    quibusdam temporibus sunt sint. Lorem ipsum dolor sit amet
+                    consectetur, adipisicing elit. Accusamus, ipsa.
                   </p>
                 </div>
                 <i className="fas fa-quote-right fa-3x"></i>
