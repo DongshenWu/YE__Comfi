@@ -36,31 +36,31 @@ const ProductScreen = ({ match }) => {
 
   function changeQuantity(e) {
     e.preventDefault();
-    console.log(e);
-    if (e.className === "productScreen__blackInput") {
-      setQuantity(
-        ...{
-          total: e.target.value + quantity.blue,
-          black: e.target.value,
-        }
-      );
+    const eValue = parseInt(e.target.value);
+    // console.log(e.className);
+    if (e.target.className === "productScreen__blackInput") {
+      console.log(eValue, "black");
+      setQuantity((prev) => ({
+        ...prev,
+        total: eValue + prev.blue,
+        black: eValue,
+      }));
     } else {
-      setQuantity(
-        ...{
-          total: e.target.value + quantity.black,
-          blue: e.target.value,
-        }
-      );
+      console.log(eValue, "blue");
+      setQuantity((prev) => ({
+        ...prev,
+        total: eValue + prev.black,
+        blue: eValue,
+      }));
     }
     setPrice(
-      e.target.value > 1
-        ? product.price * e.target.value ** 0.95
-        : product.price
+      eValue > 1 ? product.price * e.target.value ** 0.95 : product.price
     );
   }
+  console.log(quantity);
 
   // console.log(product.id === 2 && "sdfdsfdf");
-  console.log(product._id === "2" && "sdfsdf");
+  // console.log(product._id === "2" && "sdfsdf");
 
   // useEffect(() => {
   //   // setProduct(productData.find(({ _id }) => _id === match.params.id)).then(
@@ -76,7 +76,7 @@ const ProductScreen = ({ match }) => {
             nextIcon={productIcons.nextIcon}
             prevIcon={productIcons.prevIcon}
           >
-            {console.log(product.image.map((image) => image))}
+            {/* {console.log(product.image.map((image) => image))} */}
             {product.image.map((image, key) => (
               <Carousel.Item>
                 <img className="d-block w-100" src={image} alt="" />
