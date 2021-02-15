@@ -82,8 +82,11 @@ const ProductScreen = ({ match }) => {
     setProduct(newProduct);
   }
 
+  // console.log(product);
+
   return (
     <Container className="py-2">
+      {/* {console.log(product)} */}
       <Row>
         <Col md={7}>
           <Carousel
@@ -112,14 +115,18 @@ const ProductScreen = ({ match }) => {
               className={`productScreen__black ${
                 product._id === "2" && "deactive"
               }`}
-              onClick={product._id === "2" && colorChange(1)}
+              // onClick={product._id === "2" && colorChange("1")}
+              onClick={() => {
+                product._id === "2" && colorChange("1");
+              }}
             />
             <div
               className={`productScreen__blue ${
                 product._id === "1" && "deactive"
               }`}
+              // onClick={() => colorChange("2")}
               onClick={() => {
-                product._id === "1" && colorChange(2);
+                product._id === "1" && colorChange("2");
               }}
             />
           </div>
@@ -188,7 +195,7 @@ const ProductScreen = ({ match }) => {
               </ListGroup.Item>
               <ListGroup.Item>
                 <StripeButton
-                  quantity={quantity.total}
+                  quantity={quantity}
                   price={price / quantity.total}
                 />
               </ListGroup.Item>

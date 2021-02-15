@@ -8,7 +8,7 @@ const app = express();
 // app.use(bodyParser.json());
 app.use(express.json());
 const stripe = Stripe(
-  "sk_test_51ICuKuKgM9REhsAZUBIiZVJ7hm4LgWh1C49Nv0rVXKyDJq5o6jkJLGc3cWPyWKdDJgTxAkgfq0PfzOo5iNmcYtbi005iSQzCpi"
+  "sk_test_51IHb6EBsADiibGEUljlWONtqREt7WYPPWBJt3TrbdyzSvoMbpdG0cUTw9sYY3xUxoyNXbQjDdWtfG8qazoYSdVf3007bPZloxQ"
 );
 
 app.post("/create-checkout-session", async (req, res) => {
@@ -27,11 +27,21 @@ app.post("/create-checkout-session", async (req, res) => {
         price_data: {
           currency: "gbp",
           product_data: {
-            name: "Back support",
+            name: "Back support - Black",
           },
           unit_amount: price,
         },
-        quantity: quantity,
+        quantity: quantity.black,
+      },
+      {
+        price_data: {
+          currency: "gbp",
+          product_data: {
+            name: "Back support - Blue",
+          },
+          unit_amount: price,
+        },
+        quantity: quantity.blue,
       },
     ],
     mode: "payment",

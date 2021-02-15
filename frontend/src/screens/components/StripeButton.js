@@ -2,12 +2,14 @@ import React from "react";
 import axios from "axios";
 import { loadStripe } from "@stripe/stripe-js";
 const stripePromise = loadStripe(
-  "pk_test_51ICuKuKgM9REhsAZTEMKlLOEtUfZx0kRJZt2Jtw9Tr4MEFeIW6T7w3oOBj9hWMIZi7U5sjTWt13Zh7UO4RDaD0ww00WW3n76rO"
+  "pk_test_51IHb6EBsADiibGEUZ8fxtjeZtZZpwbfYyGf91LBgSfwiEgusMKgjPg7YmWkhUBhOrCvzj86cFNgi40MBPfjhtdxI00E5l3HXU6"
 );
 
 const StripeButton = ({ quantity, price }) => {
   const handleClick = async () => {
     const data = { quantity, price };
+
+    console.log(quantity);
     // console.log(JSON.stringify(data));
     // Get Stripe.js instance
     const stripe = await stripePromise;
