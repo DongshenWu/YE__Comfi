@@ -31,42 +31,56 @@ const ProductScreen = ({ match }) => {
     prevIcon: <FaArrowAltCircleLeft className="productScreen__FaArrows" />,
   };
 
-  // console.log(productData.find(({ _id }) => _id === match.params.id));
-  // console.log(product.image.map((image) => image));
-
   function changeQuantity(e) {
     e.preventDefault();
-    const eValue = parseInt(e.target.value);
-    // console.log(e.className);
+
+    const eValue = isNaN(parseInt(e.target.value))
+      ? 0
+      : parseInt(e.target.value);
+
+    console.log(eValue);
     if (e.target.className === "productScreen__blackInput") {
-      console.log(eValue, "black");
       setQuantity((prev) => ({
         ...prev,
         total: eValue + prev.blue,
         black: eValue,
       }));
+
+      setPrice(
+        eValue + quantity.blue > 1
+          ? product.price * (eValue + quantity.blue) ** 0.95
+          : eValue + quantity.blue === 0
+          ? 0
+          : product.price
+      );
+
+      console.log(
+        eValue,
+        quantity,
+        product.price * (eValue + quantity.blue) ** 0.95
+      );
     } else {
-      console.log(eValue, "blue");
       setQuantity((prev) => ({
         ...prev,
         total: eValue + prev.black,
         blue: eValue,
       }));
+      setPrice(
+        eValue + quantity.black > 1
+          ? product.price * (eValue + quantity.black) ** 0.95
+          : eValue + quantity.black === 0
+          ? 0
+          : product.price
+      );
     }
-    setPrice(
-      eValue > 1 ? product.price * e.target.value ** 0.95 : product.price
-    );
   }
-  console.log(quantity);
 
-  // console.log(product.id === 2 && "sdfdsfdf");
-  // console.log(product._id === "2" && "sdfsdf");
-
-  // useEffect(() => {
-  //   // setProduct(productData.find(({ _id }) => _id === match.params.id)).then(
-  //   //   setPrice(product.price)
-  //   // );
-  // }, []);
+  function colorChange(newId) {
+    console.log(newId);
+    const newProduct = productData.find(({ _id }) => _id === newId);
+    console.log(newProduct);
+    setProduct(newProduct);
+  }
 
   return (
     <Container className="py-2">
@@ -76,7 +90,6 @@ const ProductScreen = ({ match }) => {
             nextIcon={productIcons.nextIcon}
             prevIcon={productIcons.prevIcon}
           >
-            {/* {console.log(product.image.map((image) => image))} */}
             {product.image.map((image, key) => (
               <Carousel.Item>
                 <img className="d-block w-100" src={image} alt="" />
@@ -84,9 +97,6 @@ const ProductScreen = ({ match }) => {
             ))}
           </Carousel>
         </Col>
-        {/* <Col md={7}>
-          <Image src={product.image} alt={product.name} fluid />
-        </Col> */}
         <Col md={5} className="my-auto">
           <ListGroup variant="flush">
             <ListGroup.Item>
@@ -98,16 +108,19 @@ const ProductScreen = ({ match }) => {
             <ListGroup.Item>{product.description}</ListGroup.Item>
           </ListGroup>
           <div className="productScreen__colorContainer">
-            {/* <div className="productScreen__black" /> */}
             <div
               className={`productScreen__black ${
                 product._id === "2" && "deactive"
               }`}
+              onClick={product._id === "2" && colorChange(1)}
             />
             <div
               className={`productScreen__blue ${
                 product._id === "1" && "deactive"
               }`}
+              onClick={() => {
+                product._id === "1" && colorChange(2);
+              }}
             />
           </div>
           <Card>
@@ -127,6 +140,7 @@ const ProductScreen = ({ match }) => {
                     <input
                       className="productScreen__blackInput"
                       min="0"
+                      max="30"
                       style={{ height: "25px", width: "60px", padding: "5px" }}
                       type="number"
                       value={quantity.black}
@@ -140,10 +154,12 @@ const ProductScreen = ({ match }) => {
                     <input
                       className="productScreen__blueInput"
                       min="0"
+                      max="30"
                       style={{ height: "25px", width: "60px", padding: "5px" }}
                       type="number"
                       value={quantity.blue}
                       onChange={changeQuantity}
+                      // onInvalid
                     />
                   </Col>
                 </Row>
@@ -152,9 +168,9 @@ const ProductScreen = ({ match }) => {
                 <Row>
                   <Col>Unit Price:</Col>
                   <Col>
-                    {quantity > 0 && (
+                    {quantity.total > 0 && (
                       <strong style={{}}>
-                        {Math.round((100 * price) / quantity) / 100}
+                        {Math.round((100 * price) / quantity.total) / 100}
                       </strong>
                     )}
                   </Col>
@@ -170,24 +186,6 @@ const ProductScreen = ({ match }) => {
                   </Col>
                 </Row>
               </ListGroup.Item>
-              {/* <ListGroup.Item>
-                <Row>
-                  <Col>Quantity:</Col>
-                  <Col>
-                    <Form.Control
-                      as="select"
-                      value={qty}
-                      onChange={(e) => setQty(e.target.value)}
-                    >
-                      {[...Array(product.countInStock).keys()].map((x) => (
-                        <option key={x + 1} value={x + 1}>
-                          {x + 1}
-                        </option>
-                      ))}
-                    </Form.Control>
-                  </Col>
-                </Row>
-              </ListGroup.Item> */}
               <ListGroup.Item>
                 <StripeButton
                   quantity={quantity.total}
