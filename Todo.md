@@ -1,15 +1,9 @@
 # Todo
 
-1. Add shopping cart functionality
+1. Add 404 Page
 
-2. Pass quantity and variety info from cart to stripe
+2. Make website more mobile friendly
 
-3. Add About Page
+3. Minor UI/UX adjustments
 
-4. Add 404 Page
-
-5. Make website more mobile friendly
-
-6. Other UI/UX adjustments
-
-7. Activate Stripe and Deploy to Heroku
+4. Activate Stripe and Deploy to Heroku

@@ -8,10 +8,10 @@ const About = () => {
     <section id="about">
       <div className="wrapper">
         <Row>
-          <Col md={5}>
+          <Col md={4}>
             <img src="./images/man.jpg" alt="" className="w-100" />
           </Col>
-          <Col md={7} className="m-auto">
+          <Col md={8} className="m-auto">
             <h2>About Us</h2>
             <p>
               Lorem ipsum dolor, sit amet consectetur adipisicing elit. Aperiam unde natus
@@ -19,9 +19,7 @@ const About = () => {
               praesentium eum fuga iure in commodi quasi nihil sit quis quidem porro
               soluta illum. Sunt ipsum excepturi ex reiciendis deleniti odit adipisci
               recusandae exercitationem, earum ipsam tempora ad?Lorem ipsum dolor sit amet
-              consectetur adipisicing elit. Nihil, non esse ut iste dolore excepturi
-              quibusdam consectetur nesciunt corporis voluptatum voluptatibus
-              reprehenderit consequuntur.
+              consectetur adipisicing elit.
             </p>
           </Col>
         </Row>

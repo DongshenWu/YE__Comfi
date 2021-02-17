@@ -19,3 +19,12 @@
   -webkit-box-shadow: 0 0 8px 8px var(--yellow) inset;
   box-shadow: 0 0 8px 8px var(--yellow) inset;
 }
+
+@media (max-width: 766px) {
+  .hero-text {
+    text-align: center;
+  }
+  .hero-img {
+    margin-top: 2em;
+  }
+}

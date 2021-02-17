@@ -7,12 +7,14 @@ import { Link } from "react-router-dom";
 const CallToAction = () => {
   return (
     <section id="call-to-action">
-      <h1>Try it now and you would not regret it!</h1>
-      <Link to="/product/1">
-        <button className="btn btn-cta">
-          <span>SHOP NOW</span>
-        </button>
-      </Link>
+      <div className="wrapper">
+        <h1>Try it now and you would not regret it!</h1>
+        <Link to="/product/1">
+          <button className="btn btn-cta">
+            <span>Buy Now</span>
+          </button>
+        </Link>
+      </div>
     </section>
   );
 };
