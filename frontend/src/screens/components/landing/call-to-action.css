@@ -1,0 +1,11 @@
+#call-to-action {
+  background-color: var(--yellow);
+  text-align: center;
+  color: var(--blue);
+  padding-bottom: 2em;
+}
+
+#call-to-action h1 {
+  font-weight: bold;
+  padding-bottom: 1em;
+}

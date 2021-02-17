@@ -1,0 +1,13 @@
+#about img {
+  -webkit-clip-path: circle(43% at center);
+  clip-path: circle(43% at center);
+}
+
+#about h2 {
+  color: var(--blue);
+}
+
+/* #about .wrapper {
+  border: 5px var(--blue) solid;
+  border-radius: 10px;
+} */

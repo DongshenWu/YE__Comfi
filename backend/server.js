@@ -5,14 +5,12 @@ import products from "./data/products.js";
 
 dotenv.config();
 const app = express();
-// app.use(bodyParser.json());
 app.use(express.json());
 const stripe = Stripe(
   "sk_test_51IHb6EBsADiibGEUljlWONtqREt7WYPPWBJt3TrbdyzSvoMbpdG0cUTw9sYY3xUxoyNXbQjDdWtfG8qazoYSdVf3007bPZloxQ"
 );
 
 app.post("/create-checkout-session", async (req, res) => {
-  console.log(req);
   const price = Math.round(req.body.price * 100);
   const quantity = req.body.quantity;
 
@@ -64,12 +62,6 @@ app.get("/api/products/:id", (req, res) => {
   const product = products.find((p) => p._id === req.params.id);
   res.json(product);
 });
-
-const port = process.env.PORT || 5000;
-
-// app.listen(port, () => {
-//   console.log(`Server started in ${process.env.NODE_ENV} mode at port ${port}`);
-// });
 
 app.listen(5000, () => {
   console.log("running");

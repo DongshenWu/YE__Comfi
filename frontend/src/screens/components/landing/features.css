@@ -1,0 +1,24 @@
+#features {
+  background-color: var(--yellow);
+}
+
+#features .wrapper {
+  padding-top: 0;
+}
+
+#features .feature {
+  text-align: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-flow: wrap column;
+  flex-flow: wrap column;
+}
+
+#features .feature p {
+  width: 15rem;
+}
+
+#features .feature i {
+  color: var(--dark);
+  margin: 0.5em 0;
+}

@@ -1,5 +1,6 @@
 import React from "react";
-import "../../index.css";
+import "./header.css";
+import "../styles/cta-button.css";
 import { Link } from "react-router-dom";
 
 const Header = () => {
@@ -12,11 +13,10 @@ const Header = () => {
           </Link>
         </div>
         <div className="f options">
-          <Link to="/about">
-            <p>About us</p>
-          </Link>
-          <Link to="/products">
-            <p>Products</p>
+          <Link to="/product/1">
+            <button className="btn btn-cta">
+              <span>Buy Now</span>
+            </button>
           </Link>
         </div>
       </div>

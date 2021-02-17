@@ -1,17 +1,6 @@
-import React, { useState, useEffect } from "react";
-import {
-  Container,
-  Col,
-  ListGroup,
-  Row,
-  Image,
-  Card,
-  Form,
-  Carousel,
-} from "react-bootstrap";
-import { Link } from "react-router-dom";
+import React, { useState } from "react";
+import { Container, Col, ListGroup, Row, Card, Carousel } from "react-bootstrap";
 import Rating from "./components/Rating";
-import axios from "axios";
 import StripeButton from "./components/StripeButton";
 import productData from "../data/productData";
 import { FaArrowAltCircleRight, FaArrowAltCircleLeft } from "react-icons/fa";
@@ -21,8 +10,6 @@ const ProductScreen = ({ match }) => {
   const [product, setProduct] = useState(
     productData.find(({ _id }) => _id === match.params.id)
   );
-  // const [quantityBlack, setQuantityBlack] = useState(1);
-  // const [quantityBlue, setQuantityBlue] = useState(0);
   const [quantity, setQuantity] = useState({ total: 1, black: 1, blue: 0 });
   const [price, setPrice] = useState(product.price);
 
@@ -34,11 +21,8 @@ const ProductScreen = ({ match }) => {
   function changeQuantity(e) {
     e.preventDefault();
 
-    const eValue = isNaN(parseInt(e.target.value))
-      ? 0
-      : parseInt(e.target.value);
+    const eValue = isNaN(parseInt(e.target.value)) ? 0 : parseInt(e.target.value);
 
-    console.log(eValue);
     if (e.target.className === "productScreen__blackInput") {
       setQuantity((prev) => ({
         ...prev,
@@ -54,11 +38,7 @@ const ProductScreen = ({ match }) => {
           : product.price
       );
 
-      console.log(
-        eValue,
-        quantity,
-        product.price * (eValue + quantity.blue) ** 0.95
-      );
+      console.log(eValue, quantity, product.price * (eValue + quantity.blue) ** 0.95);
     } else {
       setQuantity((prev) => ({
         ...prev,
@@ -82,17 +62,11 @@ const ProductScreen = ({ match }) => {
     setProduct(newProduct);
   }
 
-  // console.log(product);
-
   return (
     <Container className="py-2">
-      {/* {console.log(product)} */}
       <Row>
         <Col md={7}>
-          <Carousel
-            nextIcon={productIcons.nextIcon}
-            prevIcon={productIcons.prevIcon}
-          >
+          <Carousel nextIcon={productIcons.nextIcon} prevIcon={productIcons.prevIcon}>
             {product.image.map((image, key) => (
               <Carousel.Item>
                 <img className="d-block w-100" src={image} alt="" />
@@ -112,18 +86,14 @@ const ProductScreen = ({ match }) => {
           </ListGroup>
           <div className="productScreen__colorContainer">
             <div
-              className={`productScreen__black ${
-                product._id === "2" && "deactive"
-              }`}
+              className={`productScreen__black ${product._id === "2" && "deactive"}`}
               // onClick={product._id === "2" && colorChange("1")}
               onClick={() => {
                 product._id === "2" && colorChange("1");
               }}
             />
             <div
-              className={`productScreen__blue ${
-                product._id === "1" && "deactive"
-              }`}
+              className={`productScreen__blue ${product._id === "1" && "deactive"}`}
               // onClick={() => colorChange("2")}
               onClick={() => {
                 product._id === "1" && colorChange("2");
@@ -194,10 +164,7 @@ const ProductScreen = ({ match }) => {
                 </Row>
               </ListGroup.Item>
               <ListGroup.Item>
-                <StripeButton
-                  quantity={quantity}
-                  price={price / quantity.total}
-                />
+                <StripeButton quantity={quantity} price={price / quantity.total} />
               </ListGroup.Item>
             </ListGroup>
           </Card>

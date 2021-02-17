@@ -1,0 +1,21 @@
+#hero {
+  padding: 2em 0;
+  background-color: var(--yellow);
+}
+
+#hero .hero-text h1 {
+  font-family: "Roboto", sans-serif;
+}
+
+#hero .hero-img {
+  -webkit-clip-path: circle(43% at center);
+  clip-path: circle(43% at center);
+}
+
+#hero .hero-img img {
+  width: 80%;
+  margin: 0 auto;
+  display: block;
+  -webkit-box-shadow: 0 0 8px 8px var(--yellow) inset;
+  box-shadow: 0 0 8px 8px var(--yellow) inset;
+}

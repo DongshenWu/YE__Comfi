@@ -1,0 +1,14 @@
+#products {
+  background-color: var(--yellow);
+  text-align: center;
+}
+
+.card {
+  background-color: transparent;
+  padding: 1em;
+  border: transparent;
+}
+
+.card h3 {
+  color: var(--blue);
+}
