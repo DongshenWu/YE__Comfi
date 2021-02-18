@@ -5,6 +5,7 @@ import StripeButton from "./components/StripeButton";
 import productData from "../data/productData";
 import { FaArrowAltCircleRight, FaArrowAltCircleLeft } from "react-icons/fa";
 import "./styles/ProductScreenStyles.css";
+import Header from "./components/Header";
 
 const ProductScreen = ({ match }) => {
   const [product, setProduct] = useState(
@@ -63,114 +64,117 @@ const ProductScreen = ({ match }) => {
   }
 
   return (
-    <Container className="py-2">
-      <Row>
-        <Col md={7}>
-          <Carousel nextIcon={productIcons.nextIcon} prevIcon={productIcons.prevIcon}>
-            {product.image.map((image, key) => (
-              <Carousel.Item>
-                <img className="d-block w-100" src={image} alt="" />
-              </Carousel.Item>
-            ))}
-          </Carousel>
-        </Col>
-        <Col md={5} className="my-auto">
-          <ListGroup variant="flush">
-            <ListGroup.Item>
-              <h3>{product.name}</h3>
-            </ListGroup.Item>
-            <ListGroup.Item>
-              <Rating rating={product.rating} numReviews={product.numReviews} />
-            </ListGroup.Item>
-            <ListGroup.Item>{product.description}</ListGroup.Item>
-          </ListGroup>
-          <div className="productScreen__colorContainer">
-            <div
-              className={`productScreen__black ${product._id === "2" && "deactive"}`}
-              // onClick={product._id === "2" && colorChange("1")}
-              onClick={() => {
-                product._id === "2" && colorChange("1");
-              }}
-            />
-            <div
-              className={`productScreen__blue ${product._id === "1" && "deactive"}`}
-              // onClick={() => colorChange("2")}
-              onClick={() => {
-                product._id === "1" && colorChange("2");
-              }}
-            />
-          </div>
-          <Card>
+    <>
+      <Header p={window.location.pathname} />
+      <Container className="py-2">
+        <Row>
+          <Col md={7}>
+            <Carousel nextIcon={productIcons.nextIcon} prevIcon={productIcons.prevIcon}>
+              {product.image.map((image, key) => (
+                <Carousel.Item>
+                  <img className="d-block w-100" src={image} alt="" />
+                </Carousel.Item>
+              ))}
+            </Carousel>
+          </Col>
+          <Col md={5} className="my-auto">
             <ListGroup variant="flush">
               <ListGroup.Item>
-                <Row>
-                  <Col>Price:</Col>
-                  <Col>
-                    <strong>{Math.round(100 * price) / 100}</strong>
-                  </Col>
-                </Row>
+                <h3>{product.name}</h3>
               </ListGroup.Item>
               <ListGroup.Item>
-                <Row>
-                  <Col>Quantity - Black</Col>
-                  <Col>
-                    <input
-                      className="productScreen__blackInput"
-                      min="0"
-                      max="30"
-                      style={{ height: "25px", width: "60px", padding: "5px" }}
-                      type="number"
-                      value={quantity.black}
-                      onChange={changeQuantity}
-                    />
-                  </Col>
-                </Row>
-                <Row>
-                  <Col>Quantity - Blue</Col>
-                  <Col>
-                    <input
-                      className="productScreen__blueInput"
-                      min="0"
-                      max="30"
-                      style={{ height: "25px", width: "60px", padding: "5px" }}
-                      type="number"
-                      value={quantity.blue}
-                      onChange={changeQuantity}
-                      // onInvalid
-                    />
-                  </Col>
-                </Row>
+                <Rating rating={product.rating} numReviews={product.numReviews} />
               </ListGroup.Item>
-              <ListGroup.Item>
-                <Row>
-                  <Col>Unit Price:</Col>
-                  <Col>
-                    {quantity.total > 0 && (
-                      <strong style={{}}>
-                        {Math.round((100 * price) / quantity.total) / 100}
-                      </strong>
-                    )}
-                  </Col>
-                </Row>
-              </ListGroup.Item>
-              <ListGroup.Item>
-                <Row>
-                  <Col>Status:</Col>
-                  <Col>
-                    <strong>
-                      {product.countInStock > 0 ? "In stock" : "Out of Stock"}
-                    </strong>
-                  </Col>
-                </Row>
-              </ListGroup.Item>
-              <ListGroup.Item>
-                <StripeButton quantity={quantity} price={price / quantity.total} />
-              </ListGroup.Item>
+              <ListGroup.Item>{product.description}</ListGroup.Item>
             </ListGroup>
-          </Card>
-        </Col>
-      </Row>
-    </Container>
+            <div className="productScreen__colorContainer">
+              <div
+                className={`productScreen__black ${product._id === "2" && "deactive"}`}
+                // onClick={product._id === "2" && colorChange("1")}
+                onClick={() => {
+                  product._id === "2" && colorChange("1");
+                }}
+              />
+              <div
+                className={`productScreen__blue ${product._id === "1" && "deactive"}`}
+                // onClick={() => colorChange("2")}
+                onClick={() => {
+                  product._id === "1" && colorChange("2");
+                }}
+              />
+            </div>
+            <Card>
+              <ListGroup variant="flush">
+                <ListGroup.Item>
+                  <Row>
+                    <Col>Price:</Col>
+                    <Col>
+                      <strong>{Math.round(100 * price) / 100}</strong>
+                    </Col>
+                  </Row>
+                </ListGroup.Item>
+                <ListGroup.Item>
+                  <Row>
+                    <Col>Quantity - Black</Col>
+                    <Col>
+                      <input
+                        className="productScreen__blackInput"
+                        min="0"
+                        max="30"
+                        style={{ height: "25px", width: "60px", padding: "5px" }}
+                        type="number"
+                        value={quantity.black}
+                        onChange={changeQuantity}
+                      />
+                    </Col>
+                  </Row>
+                  <Row>
+                    <Col>Quantity - Blue</Col>
+                    <Col>
+                      <input
+                        className="productScreen__blueInput"
+                        min="0"
+                        max="30"
+                        style={{ height: "25px", width: "60px", padding: "5px" }}
+                        type="number"
+                        value={quantity.blue}
+                        onChange={changeQuantity}
+                        // onInvalid
+                      />
+                    </Col>
+                  </Row>
+                </ListGroup.Item>
+                <ListGroup.Item>
+                  <Row>
+                    <Col>Unit Price:</Col>
+                    <Col>
+                      {quantity.total > 0 && (
+                        <strong style={{}}>
+                          {Math.round((100 * price) / quantity.total) / 100}
+                        </strong>
+                      )}
+                    </Col>
+                  </Row>
+                </ListGroup.Item>
+                <ListGroup.Item>
+                  <Row>
+                    <Col>Status:</Col>
+                    <Col>
+                      <strong>
+                        {product.countInStock > 0 ? "In stock" : "Out of Stock"}
+                      </strong>
+                    </Col>
+                  </Row>
+                </ListGroup.Item>
+                <ListGroup.Item>
+                  <StripeButton quantity={quantity} price={price / quantity.total} />
+                </ListGroup.Item>
+              </ListGroup>
+            </Card>
+          </Col>
+        </Row>
+      </Container>
+    </>
   );
 };
 

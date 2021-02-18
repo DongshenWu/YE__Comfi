@@ -11,3 +11,10 @@
   border: 5px var(--blue) solid;
   border-radius: 10px;
 } */
+
+@media (max-width: 766px) {
+  #about h2,
+  #about p {
+    text-align: center;
+  }
+}

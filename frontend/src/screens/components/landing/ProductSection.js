@@ -17,7 +17,7 @@ const ProductSection = () => {
                 alt="..."
               />
               <div className="card-body">
-                <h3 className="card-title">Kiss of Darkness</h3>
+                <h3 className="card-title">Comfi Specialist -- Black</h3>
                 <p className="card-text">
                   Lorem ipsum dolor sit, amet consectetur adipisicing elit. Minus
                   cupiditate reprehenderit quisquam distinctio soluta maxime libero
@@ -36,7 +36,7 @@ const ProductSection = () => {
                 alt="..."
               />
               <div className="card-body">
-                <h3 className="card-title">Hug of Ocean</h3>
+                <h3 className="card-title">Comfi Specialist -- Blue</h3>
                 <p className="card-text">
                   Lorem ipsum dolor sit, amet consectetur adipisicing elit. Minus
                   cupiditate reprehenderit quisquam distinctio soluta maxime libero

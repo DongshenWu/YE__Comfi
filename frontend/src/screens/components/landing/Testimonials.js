@@ -1,5 +1,6 @@
 import React from "react";
 import "./_landing.css";
+import "./testimonials.css";
 import Rating from "../Rating";
 import { Col, ListGroup, Row } from "react-bootstrap";
 import { LandingSData } from "../../../data/LandingSData";
