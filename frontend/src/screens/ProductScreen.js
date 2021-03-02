@@ -67,7 +67,7 @@ const ProductScreen = ({ match }) => {
     <>
       <Header p={window.location.pathname} />
       <Container className="py-2">
-        <Row>
+        <Row style={{ paddingTop: "10rem" }}>
           <Col md={7}>
             <Carousel nextIcon={productIcons.nextIcon} prevIcon={productIcons.prevIcon}>
               {product.image.map((image, key) => (

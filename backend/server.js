@@ -7,12 +7,13 @@ dotenv.config();
 const app = express();
 app.use(express.json());
 const stripe = Stripe(
-  "sk_test_51IHb6EBsADiibGEUljlWONtqREt7WYPPWBJt3TrbdyzSvoMbpdG0cUTw9sYY3xUxoyNXbQjDdWtfG8qazoYSdVf3007bPZloxQ"
+  "sk_test_51ICuKuKgM9REhsAZUBIiZVJ7hm4LgWh1C49Nv0rVXKyDJq5o6jkJLGc3cWPyWKdDJgTxAkgfq0PfzOo5iNmcYtbi005iSQzCpi"
 );
 
 app.post("/create-checkout-session", async (req, res) => {
   const price = Math.round(req.body.price * 100);
   const quantity = req.body.quantity;
+  const name = `Comfi Back Support: \r black x${quantity.black}, blue x${quantity.blue}`;
 
   const session = await stripe.checkout.sessions.create({
     payment_method_types: ["card"],
@@ -25,21 +26,11 @@ app.post("/create-checkout-session", async (req, res) => {
         price_data: {
           currency: "gbp",
           product_data: {
-            name: "Back support - Black",
+            name: name,
           },
           unit_amount: price,
         },
-        quantity: quantity.black,
-      },
-      {
-        price_data: {
-          currency: "gbp",
-          product_data: {
-            name: "Back support - Blue",
-          },
-          unit_amount: price,
-        },
-        quantity: quantity.blue,
+        quantity: quantity.black + quantity.blue,
       },
     ],
     mode: "payment",

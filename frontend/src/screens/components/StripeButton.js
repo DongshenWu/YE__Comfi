@@ -1,7 +1,7 @@
 import React from "react";
 import { loadStripe } from "@stripe/stripe-js";
 const stripePromise = loadStripe(
-  "pk_test_51IHb6EBsADiibGEUZ8fxtjeZtZZpwbfYyGf91LBgSfwiEgusMKgjPg7YmWkhUBhOrCvzj86cFNgi40MBPfjhtdxI00E5l3HXU6"
+  "pk_test_51ICuKuKgM9REhsAZTEMKlLOEtUfZx0kRJZt2Jtw9Tr4MEFeIW6T7w3oOBj9hWMIZi7U5sjTWt13Zh7UO4RDaD0ww00WW3n76rO"
 );
 
 const StripeButton = ({ quantity, price }) => {

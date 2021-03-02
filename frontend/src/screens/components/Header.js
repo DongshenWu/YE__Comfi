@@ -15,15 +15,22 @@ const Header = (props) => {
         </div>
         {pathname === "/" ? (
           <div className="f options">
-            <a href="#about" className="op">
-              <p>About</p>
-            </a>
-            <a href="#products" className="op">
-              <p>Products</p>
-            </a>
-            <a href="#testimonials" className="op">
-              <p>Testimonials</p>
-            </a>
+            <div className="header-wrap">
+              <a href="#about" className="op">
+                About
+              </a>
+            </div>
+            <div className="header-wrap">
+              <a href="#products" className="op">
+                Products
+              </a>
+            </div>
+            <div className="header-wrap">
+              <a href="#testimonials" className="op">
+                Testimonials
+              </a>
+            </div>
+
             <Link to="/product/1">
               <button className="btn btn-cta">
                 <span>Buy Now</span>

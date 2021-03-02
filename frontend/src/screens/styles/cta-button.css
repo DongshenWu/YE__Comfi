@@ -1,13 +1,9 @@
-:root {
-  --cta-blue: #3d98c2;
-}
-
 .btn {
   border-color: var(--cta-blue);
 }
 
 .btn:hover {
-  color: #222;
+  color: var(--dark);
   background-color: var(--cta-blue);
   border-color: var(--cta-blue);
 }
@@ -50,7 +46,7 @@
 
 .btn-cta:hover,
 .btn-cta:focus:hover {
-  color: #222;
+  color: var(--dark);
 }
 
 .btn-cta:hover::after,
