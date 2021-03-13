@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Container, Col, ListGroup, Row, Card, Carousel } from "react-bootstrap";
+import { Container, Col, ListGroup, Row, Card, Carousel, Alert } from "react-bootstrap";
 import Rating from "./components/Rating";
 import StripeButton from "./components/StripeButton";
 import productData from "../data/productData";
@@ -33,13 +33,11 @@ const ProductScreen = ({ match }) => {
 
       setPrice(
         eValue + quantity.blue > 1
-          ? product.price * (eValue + quantity.blue) ** 0.95
+          ? product.price * (eValue + quantity.blue)
           : eValue + quantity.blue === 0
           ? 0
           : product.price
       );
-
-      console.log(eValue, quantity, product.price * (eValue + quantity.blue) ** 0.95);
     } else {
       setQuantity((prev) => ({
         ...prev,
@@ -48,7 +46,7 @@ const ProductScreen = ({ match }) => {
       }));
       setPrice(
         eValue + quantity.black > 1
-          ? product.price * (eValue + quantity.black) ** 0.95
+          ? product.price * (eValue + quantity.black)
           : eValue + quantity.black === 0
           ? 0
           : product.price
@@ -66,8 +64,12 @@ const ProductScreen = ({ match }) => {
   return (
     <>
       <Header p={window.location.pathname} />
+      <div style={{ paddingTop: "9rem" }}></div>
+      <div className="ad">
+        <h4>Spend £75.00 to get free shipping!</h4>
+      </div>
       <Container className="py-2">
-        <Row style={{ paddingTop: "10rem" }}>
+        <Row style={{ paddingTop: "2rem" }}>
           <Col md={7}>
             <Carousel nextIcon={productIcons.nextIcon} prevIcon={productIcons.prevIcon}>
               {product.image.map((image, key) => (
@@ -107,7 +109,7 @@ const ProductScreen = ({ match }) => {
               <ListGroup variant="flush">
                 <ListGroup.Item>
                   <Row>
-                    <Col>Price:</Col>
+                    <Col>Price (£):</Col>
                     <Col>
                       <strong>{Math.round(100 * price) / 100}</strong>
                     </Col>
@@ -146,11 +148,11 @@ const ProductScreen = ({ match }) => {
                 </ListGroup.Item>
                 <ListGroup.Item>
                   <Row>
-                    <Col>Unit Price:</Col>
+                    <Col>Shipping Price:</Col>
                     <Col>
                       {quantity.total > 0 && (
                         <strong style={{}}>
-                          {Math.round((100 * price) / quantity.total) / 100}
+                          {price < 75 ? 2.5 * quantity.total : 0}
                         </strong>
                       )}
                     </Col>

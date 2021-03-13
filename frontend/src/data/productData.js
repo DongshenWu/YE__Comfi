@@ -10,7 +10,7 @@ const productData = [
     ],
     description:
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
-    price: 19.99,
+    price: 19.0,
     countInStock: 10,
     rating: 4.5,
     numReviews: 12,
@@ -26,7 +26,7 @@ const productData = [
     ],
     description:
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
-    price: 19.99,
+    price: 19.0,
     countInStock: 7,
     rating: 4.5,
     numReviews: 8,

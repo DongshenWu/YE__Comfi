@@ -6,14 +6,18 @@ import products from "./data/products.js";
 dotenv.config();
 const app = express();
 app.use(express.json());
+app.use(express.static("public"));
 const stripe = Stripe(
   "sk_test_51ICuKuKgM9REhsAZUBIiZVJ7hm4LgWh1C49Nv0rVXKyDJq5o6jkJLGc3cWPyWKdDJgTxAkgfq0PfzOo5iNmcYtbi005iSQzCpi"
 );
 
 app.post("/create-checkout-session", async (req, res) => {
-  const price = Math.round(req.body.price * 100);
+  // const price = Math.round(req.body.price * 100);
+  const price = 1900;
   const quantity = req.body.quantity;
-  const name = `Comfi Back Support: \r black x${quantity.black}, blue x${quantity.blue}`;
+  const total_quantity = quantity.black + quantity.blue;
+  const shipping = price * total_quantity < 7500 ? 250 : 0;
+  const name = `Comfi Back Support: black x${quantity.black}, blue x${quantity.blue}`;
 
   const session = await stripe.checkout.sessions.create({
     payment_method_types: ["card"],
@@ -27,10 +31,12 @@ app.post("/create-checkout-session", async (req, res) => {
           currency: "gbp",
           product_data: {
             name: name,
+            images: ["http://127.0.0.1:3000/images/Comfi-Hero1.png"],
           },
-          unit_amount: price,
+          unit_amount: price + shipping,
         },
-        quantity: quantity.black + quantity.blue,
+
+        quantity: total_quantity,
       },
     ],
     mode: "payment",
